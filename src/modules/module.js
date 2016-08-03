@@ -35,12 +35,14 @@ export function convertResponseToObjects(resp) {
     }
 
     for (var i in resp.items) {
-        var item = resp.items[i];
-        if (typeof item.id !== 'undefined' &&
-            typeof item.name !== 'undefined' &&
-            typeof item.price !== 'undefined') {
-            var p = new Product(item.id, item.name, item.price);
-            res.push(p);
+        if (resp.items.hasOwnProperty(i)) {
+            var item = resp.items[i];
+            if (typeof item.id !== 'undefined' &&
+                typeof item.name !== 'undefined' &&
+                typeof item.price !== 'undefined') {
+                var p = new Product(item.id, item.name, item.price);
+                res.push(p);
+            }
         }
     }
 
