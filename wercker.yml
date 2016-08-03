@@ -32,3 +32,25 @@ build:
 
     # A step that executes `npm test` command
     - npm-test
+
+deploy-s3-staging:
+    steps:
+    - s3sync:
+        source_dir: build/
+        delete-removed: true
+        bucket-url: $AWS_BUCKET_URL
+        key-id: $AWS_ACCESS_KEY_ID
+        key-secret: $AWS_SECRET_ACCESS_KEY
+
+
+deploy:
+  steps:
+    - nhuray/aws-code-deploy:
+       key: aws_access_key_id
+       secret: aws_access_secret_id
+       application-name: hello
+       application-version: 1.1.0
+       deployment-group-name: development
+       service-role-arn: arn:aws:iam::89862646$091:role/CodeDeploy
+       ec2-tag-filters: Key=app,Value=hello,Type=KEY_AND_VALUE Key=environment,Value=development,Type=KEY_AND_VALUE
+       s3-bucket: apps.mycompany.com
