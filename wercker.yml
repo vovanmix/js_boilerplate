@@ -27,7 +27,7 @@ build:
 
     # lint
     - script:
-        name: echo nodejs information
+        name: lint
         code: npm run jsHint -- --failTaskOnError
 
     # A step that executes `npm test` command
