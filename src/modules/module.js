@@ -32,7 +32,7 @@ export function convertResponseToObjects(resp) {
     var res = [];
 
     if (resp.status.substr(0, 3) !== '200') {
-        return [false];
+        return [];
     }
 
     for (var i in resp.items) {
