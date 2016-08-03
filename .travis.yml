@@ -9,3 +9,9 @@ script:
     - echo 'test non-webgl' && echo -en 'travis_fold:start:script.test\\r'
     - npm run test
     - echo -en 'travis_fold:end:script.test\\r'
+
+# minify
+
+# run test again againts minified version
+
+# run cloc
